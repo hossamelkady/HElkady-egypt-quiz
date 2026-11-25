@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">كويز مصر</string>
+    <string name="title_activity_main">كويز مصر</string>
+    <string name="package_name">com.helkady.quiz</string>
+    <string name="custom_url_scheme">com.helkady.quiz</string>
+</resources>

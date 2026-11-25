@@ -1,5 +1,5 @@
 const $=id=>document.getElementById(id);
-const load=(k,f)=>{try{return JSON.parse(localStorage.getItem(k))||f}catch(e){return f}};
+const load=(k,f)=>{try{const v=JSON.parse(localStorage.getItem(k));return v==null||typeof v!==typeof f||Array.isArray(v)!==Array.isArray(f)?f:v}catch(e){return f}};
 function loadCat(id){return new Promise((res,rej)=>{if(window.QUIZ_DATA&&window.QUIZ_DATA[id])return res(window.QUIZ_DATA[id]);const s=document.createElement('script');s.src='data/'+id+'.js';s.onload=()=>res(window.QUIZ_DATA[id]);s.onerror=rej;document.head.appendChild(s);});}
 function menu(){$('menu').style.display='block';$('game').style.display='none';$('end').style.display='none';const L=$('cats');L.innerHTML='';
  QUIZ_CATS.forEach(c=>{const d=document.createElement('div');d.className='card cat';const best=load('quiz-best-'+c.id,0);

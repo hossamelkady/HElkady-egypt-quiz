@@ -4,7 +4,17 @@
   "description": "Arabic quiz game PWA: categories, easy / medium / hard levels, questions shown in random order without repeats until the pool is used up. Works offline.",
   "scripts": {
     "test": "node test.js",
-    "start": "npx --yes serve ."
+    "start": "npx --yes serve www",
+    "sync": "cap sync android",
+    "android": "cap open android",
+    "build:apk": "cd android && ./gradlew assembleDebug"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@capacitor/android": "^7.0.0",
+    "@capacitor/core": "^7.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.0.0"
+  }
 }

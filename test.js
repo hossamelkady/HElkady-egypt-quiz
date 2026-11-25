@@ -1,8 +1,8 @@
-const assert=require('assert');const fs=require('fs');const vm=require('vm');const Q=require('./logic.js');
+const assert=require('assert');const fs=require('fs');const vm=require('vm');const Q=require('./www/logic.js');
 const ctx={window:{}};vm.createContext(ctx);
-vm.runInContext(fs.readFileSync('data/index.js','utf8'),ctx);
+vm.runInContext(fs.readFileSync('www/data/index.js','utf8'),ctx);
 const cats=ctx.window.QUIZ_CATS;
-for(const c of cats){vm.runInContext(fs.readFileSync('data/'+c.id+'.js','utf8'),ctx);
+for(const c of cats){vm.runInContext(fs.readFileSync('www/data/'+c.id+'.js','utf8'),ctx);
  const rows=ctx.window.QUIZ_DATA[c.id];assert.strictEqual(rows.length,c.count);
  const seen=new Set();
  for(const r of rows){assert.strictEqual(r.length,4);assert.ok(!seen.has(r[0]),'dup '+r[0]);seen.add(r[0]);
@@ -30,4 +30,14 @@ const rows=ctx.window.QUIZ_DATA.egypt;let seenIdx=[];const shown=new Set();
 for(let i=0;i<4;i++){const p=Q.pickQuestions(rows,'mixed',10,seenIdx,Math.random);seenIdx=p.seen;p.indexes.forEach(x=>{assert.ok(!shown.has(x));shown.add(x);});}
 const pr=Q.present(rows[0]);assert.strictEqual(pr.options[pr.answer],rows[0][1]);assert.strictEqual(pr.options.length,4);
 assert.ok(Q.pickQuestions(rows,'hard',10,[],Math.random).indexes.every(i=>rows[i][3]==='hard'));
+// no repeats before the pool is exhausted, and the leftover fresh ones are used before any repeat
+{const rs=Array.from({length:25},(_,i)=>['q'+i,'a',['b','c','d'],'easy']);let seen=[];const shownAll=[];
+ for(let k=0;k<2;k++){const p=Q.pickQuestions(rs,'easy',10,seen,Math.random);assert.strictEqual(new Set(p.indexes).size,10);p.indexes.forEach(x=>assert.ok(!shownAll.includes(x)));shownAll.push(...p.indexes);seen=p.seen;}
+ const p3=Q.pickQuestions(rs,'easy',10,seen,Math.random);
+ assert.strictEqual(new Set(p3.indexes).size,10);
+ const leftover=rs.map((_,i)=>i).filter(i=>!shownAll.includes(i));
+ assert.ok(leftover.every(i=>p3.indexes.includes(i)),'all unseen questions must come first');
+ assert.strictEqual(p3.seen.length,5);// new cycle only counts the questions added after the reset
+ // corrupted seen data is ignored
+ assert.strictEqual(Q.pickQuestions(rs,'easy',10,'oops',Math.random).indexes.length,10);}
 console.log('quiz tests passed');
