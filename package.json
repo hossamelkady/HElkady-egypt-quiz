@@ -1,0 +1,10 @@
+{
+  "name": "helkady-egypt-quiz",
+  "version": "1.0.0",
+  "description": "Arabic quiz game PWA: categories, easy / medium / hard levels, questions shown in random order without repeats until the pool is used up. Works offline.",
+  "scripts": {
+    "test": "node test.js",
+    "start": "npx --yes serve ."
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,9 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><title>كويز مصر</title><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#b91c1c"><link rel="stylesheet" href="style.css"><style>:root{--c:#b91c1c}
+.cat{display:flex;justify-content:space-between;align-items:center}.opt{display:block;width:100%;text-align:right;margin:8px 0;background:#fff;color:#0f172a;border:2px solid #e2e8f0}
+.opt.ok{background:#bbf7d0;border-color:#16a34a}.opt.bad{background:#fecaca;border-color:#dc2626}#q{font-size:22px;line-height:1.7}</style></head><body>
+<header>🧩 كويز مصر <span id="score" style="font-size:16px"></span></header><main>
+<div id="menu"><div class="card"><label>المستوى</label><select id="level"><option value="easy">سهل</option><option value="medium">متوسط</option><option value="hard">صعب</option><option value="mixed">مختلط</option></select>
+<label>عدد الأسئلة</label><select id="n"><option>10</option><option>20</option><option>30</option></select></div><div id="cats"></div></div>
+<div id="game" style="display:none"><div class="card"><div class="muted" id="prog"></div><div id="q"></div><div id="opts"></div><button id="next" style="display:none">التالي</button></div></div>
+<div id="end" style="display:none" class="card"><div class="big" id="res"></div><br><button id="again">رجوع للقائمة</button></div></main>
+<script src="logic.js"></script><script src="data/index.js"></script><script src="app.js"></script></body></html>
