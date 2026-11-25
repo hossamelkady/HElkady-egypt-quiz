@@ -21,9 +21,9 @@ Deploy: upload the folder to any static host (GitHub Pages, Netlify, Cloudflare 
 ## Question bank
 | Category | Questions |
 |---|---|
-| ثقافة مصرية | 62 (easy 19, medium 37, hard 6) |
-| الجغرافيا | 758 (easy 125, medium 462, hard 171) |
-| العناصر الكيميائية | 472 (easy 80, medium 136, hard 256) |
+| ثقافة مصرية | 378 (easy 19, medium 196, hard 163) |
+| الجغرافيا | 1004 (easy 172, medium 661, hard 171) |
+| العناصر الكيميائية | 1040 (easy 180, medium 329, hard 531) |
 | الرياضيات | 1000 (easy 334, medium 333, hard 333) |
 | الوحدات والتحويلات | 1000 (easy 334, medium 333, hard 333) |
 
